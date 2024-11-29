@@ -9,12 +9,11 @@ import java.io.PrintWriter;
  *
  * @author Alex Pollock
  */
-public class BitTree<K> {
+public class BitTree {
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
   public int size = 0;
-  PrintWriter pen = new PrintWriter(System.out);
   Node root = null;
   public int numNodes = 0;
   // +--------------+------------------------------------------------
@@ -67,6 +66,18 @@ public class BitTree<K> {
     } // for
     return currNode;
   } // traverse(String)
+
+
+  private void dumpHelper(String bits, PrintWriter pen) {
+    if (bits.length() == size) {
+      if (get(bits) != null) {
+        pen.println(bits + "," + get(bits));
+      }
+    } else {
+      dumpHelper((new StringBuilder(bits).append('0')).toString(), pen);
+      dumpHelper((new StringBuilder(bits).append('1')).toString(), pen);
+    }
+  }
   // +---------+-----------------------------------------------------
   // | Methods |
   // +---------+
@@ -102,7 +113,7 @@ public class BitTree<K> {
    *
    */
   public void dump(PrintWriter pen) {
-    // STUB
+    this.dumpHelper("", pen);
   } // dump(PrintWriter)
 
   /**
