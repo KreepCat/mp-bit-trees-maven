@@ -13,15 +13,27 @@ public class BitTree {
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
-  public int size = 0;
+
+
+  /**
+   * The size of the bit tree. Its depth.
+   */
+  int size = 0;
+  /**
+   * The root node of the tree.
+   */
   Node root = null;
-  public int numNodes = 0;
+  /**
+   * The total number of nodes in the tree.
+   */
+  int numNodes = 0;
   // +--------------+------------------------------------------------
   // | Constructors |
   // +--------------+
 
   /**
-   *
+   * Creates a bit tree of depth n.
+   * @param n the depth of the tree created
    */
   public BitTree(int n) {
     size = n;
@@ -34,7 +46,10 @@ public class BitTree {
   // | Local helpers |
   // +---------------+
   /**
-   * Creates the skeleton of a tree based on its size
+   * Creates the skeleton of a tree based on its size.
+   *
+   * @param root the node that we are creating the children of. This is initially the root.
+   * @param depth the current depth of the tree
    */
   private void createNodes(Node root, int depth) {
     if (depth != this.size) {
@@ -48,7 +63,7 @@ public class BitTree {
 
   /**
    * Traverse the bit tree using a string and return the node found at the end.
-   * 
+   *
    * @param bits the string being used to traverse.
    * @return the node found at the end of the bits.
    * @throws IndexOutOfBoundsException error thrown if the string is not made of 1s and 0s
@@ -62,7 +77,7 @@ public class BitTree {
         currNode = currNode.right;
       } else { // incorrect input
         throw new IndexOutOfBoundsException();
-      } // if else
+      } // if/else
     } // for
     return currNode;
   } // traverse(String)
@@ -72,19 +87,19 @@ public class BitTree {
     if (bits.length() == size) {
       if (get(bits) != null) {
         pen.println(bits + "," + get(bits));
-      }
+      } // if
     } else {
       dumpHelper((new StringBuilder(bits).append('0')).toString(), pen);
       dumpHelper((new StringBuilder(bits).append('1')).toString(), pen);
-    }
-  }
+    } // if/else
+  } // dumpHelper(String,PrintWriter)
   // +---------+-----------------------------------------------------
   // | Methods |
   // +---------+
 
   /**
    * Traverse the tree using the bits and set the end node to value.
-   * 
+   *
    * @param bits the bits that tell how to traverse the tree
    * @param value the value to set the node to
    * @throws IndexOutOfBoundsException if bits is an inappropriate size or contains elements other
@@ -99,7 +114,11 @@ public class BitTree {
   } // set(String, String)
 
   /**
+   * Traverses the tree using bits to find a value to return.
    *
+   * @param bits the bits used to traverse the tree.
+   * @throws IndexOutOfBoundsException if the length of bits or its values are incorrect.
+   * @return the value found in the tree at bits.
    */
   public String get(String bits) throws IndexOutOfBoundsException {
     if (bits.length() != size) {
@@ -110,7 +129,9 @@ public class BitTree {
   } // get(String, String)
 
   /**
+   * Prints out the combination of bits that correspond to the values in the tree.
    *
+   * @param pen the pen used to print output
    */
   public void dump(PrintWriter pen) {
     this.dumpHelper("", pen);
