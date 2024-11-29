@@ -4,7 +4,7 @@ A mini-project exploring bit trees (a form of binary tree) and their use in tran
 
 **Authors**
 
-* Your name here
+* Alexander Pollock
 * Samuel A. Rebelsky (starter code)
 
 **Acknowledgements**
@@ -15,8 +15,8 @@ A mini-project exploring bit trees (a form of binary tree) and their use in tran
 
 **Instructions for use**
 
-_Please insert instructions here._
+ To run program please input two arguments when running the code. One is the conversion type and the other is the text being converted.
 
 ---
 
-This code may be found at <https://github.com/USERNAME/mp-bit-trees-maven>. The original code may be found at <https://github.com/Grinnell-CSC207/mp-bit-trees-maven>.
+This code may be found at <https://github.com/KreepCat/mp-bit-trees-maven>. The original code may be found at <https://github.com/Grinnell-CSC207/mp-bit-trees-maven>.
