@@ -16,7 +16,7 @@ public class BitTree {
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
-  
+
   /**
    * The size of the bit tree. Its depth.
    */
@@ -35,6 +35,7 @@ public class BitTree {
 
   /**
    * Creates a bit tree of depth n.
+   *
    * @param n the depth of the tree created
    */
   public BitTree(int n) {
@@ -139,20 +140,23 @@ public class BitTree {
     this.dumpHelper("", pen);
   } // dump(PrintWriter)
 
+
   /**
+   * Adds the values found in an InputStream into the tree.
    *
+   * @param source the values to add
    */
   public void load(InputStream source) {
     BufferedReader buffer = new BufferedReader(new InputStreamReader(source));
     try {
       String read = buffer.readLine();
-      while (read!=null) {
+      while (read != null) {
         String[] vals = read.split(",");
         set(vals[0], vals[1]);
         read = buffer.readLine();
-      }
+      } // while
     } catch (IOException e) {
-    }
+    } // try/catch
   } // load(InputStream)
 
 } // class BitTree
