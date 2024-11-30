@@ -1,6 +1,9 @@
 package edu.grinnell.csc207.util;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 /**
@@ -13,8 +16,7 @@ public class BitTree {
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
-
-
+  
   /**
    * The size of the bit tree. Its depth.
    */
@@ -141,7 +143,16 @@ public class BitTree {
    *
    */
   public void load(InputStream source) {
-    // STUB
+    BufferedReader buffer = new BufferedReader(new InputStreamReader(source));
+    try {
+      String read = buffer.readLine();
+      while (read!=null) {
+        String[] vals = read.split(",");
+        set(vals[0], vals[1]);
+        read = buffer.readLine();
+      }
+    } catch (IOException e) {
+    }
   } // load(InputStream)
 
 } // class BitTree
