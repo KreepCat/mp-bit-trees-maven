@@ -103,6 +103,20 @@ public class BrailleAsciiTables {
     return toReturn.toString();
   } // charToAscii(char)
 
+  /**
+   * Use the tables provided to turn a string into a binary braille representation.
+   *
+   * @param str the string to transform.
+   * @return the transformed string.
+   */
+  public static String stringtoBraille(String str) {
+    StringBuilder toReturn = new StringBuilder();
+    for (int i = 0; i < str.length(); i++) {
+      toReturn.append(BrailleAsciiTables.toBraille(str.charAt(i)));
+    } // for
+    return toReturn.toString();
+  } // stringtoBraille(String)
+
 
   // +----------------+----------------------------------------------
   // | Static methods |
@@ -168,8 +182,9 @@ public class BrailleAsciiTables {
         // We don't care if we can't close the stream.
       } // try/catch
     } // if
-    StringBuilder builder = new StringBuilder("\\u");
-    builder.append(bits);
-    return b2uTree.get(builder.toString().formatted("UTG8"));
+    String bits2 = b2uTree.get(bits);
+    Integer toReturn = (Integer.parseInt(bits2, 16));
+    char[] val = Character.toChars(toReturn);
+    return val[0] + "";
   } // toUnicode(String)
 } // BrailleAsciiTables

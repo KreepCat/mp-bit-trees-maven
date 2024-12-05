@@ -23,9 +23,7 @@ public class BrailleASCII {
       return;
     } // if
     if (args[0].equals("braille")) {
-      for (int i = 0; i < args[1].length(); i++) {
-        pen.print(BrailleAsciiTables.toBraille(args[1].charAt(i)));
-      } // for
+      pen.println(BrailleAsciiTables.stringtoBraille(args[1]));
     } // if
     if (args[0].equals("ascii")) {
       if (args[1].length() % 6 == 0) {
@@ -45,11 +43,22 @@ public class BrailleASCII {
       } // if/else
     } // if
     if (args[0].equals("unicode")) {
-      for (int i = 0; i < args[1].length(); i++) {
-        String unicode =
-            BrailleAsciiTables.toUnicode(BrailleAsciiTables.toBraille(args[1].charAt(i)));
-        // STUB
-      } // for
+      String asBraille = BrailleAsciiTables.stringtoBraille(args[1]);
+      if (asBraille.length() % 6 == 0) {
+        for (int i = 6; i <= asBraille.length(); i += 6) {
+          String letter = asBraille.substring(i - 6, i);
+          String converted = BrailleAsciiTables.toUnicode(letter);
+          if (converted != null) { // if the value exists
+            pen.print(converted);
+          } else { // if the value does not exist
+            pen.println();
+            pen.println("Invalid input");
+            return;
+          } // if/else
+        } // for
+      } else {
+        pen.print("Invalid number of bits. Please try again.");
+      } // if/else
     } // if
     pen.println();
     pen.close();
